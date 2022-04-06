@@ -8,7 +8,7 @@ export function RepositoryList() {
     
     useEffect(() => {
         fetch('https://api.github.com/orgs/rocketseat/repos')
-        .then(response => response.json)
+        .then(response => response.json())
         .then(data => setRepositories(data))
     }, []); //recebe função e elementos q "disparam" a função, se vazio, é chamada só uma vez quando elem. é renderizado em tela
 
@@ -16,10 +16,10 @@ export function RepositoryList() {
         <section className="repository-list">
             <h1>Repository List</h1>  
             <ul>
-                <RepositoryItems repository="repositorio01"/>
-                <RepositoryItems />
-                <RepositoryItems />
-                <RepositoryItems />
+                {repositories.map(repository => {
+                    return <RepositoryItems repository={repository}/>
+                 })}
+                
             </ul>
         </section>
     );
